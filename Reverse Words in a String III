@@ -1,0 +1,25 @@
+//fast but not most optimal
+class Solution {
+    public String reverseWords(String s) {
+        //spliting the snetences into words
+        String[] arrOfStr = s.split(" ");
+        for(int i = 0 ; i<arrOfStr.length;i++){
+            //turning those words into char array 
+            char[] ch = arrOfStr[i].toCharArray();
+            int start = 0;
+            int end = ch.length - 1;
+            //reverseing the char array O(logn)
+            while(start<end){
+                char temp = ch[start];
+            ch[start] = ch[end];
+            ch[end] = temp;
+            start++;
+            end--;
+            }
+            //storing the reversed word(char array) in array of strings
+            arrOfStr[i] = String.valueOf(ch);
+        }
+        //convering the string arry into just string
+        return String.join(" ",arrOfStr);
+    }
+}
