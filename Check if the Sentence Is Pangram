@@ -1,0 +1,21 @@
+// 1. if the length of string is less than 26 ofcourse its not a panaram.
+// 2. we are creating an array of size 26 for all the char.
+// 3. As we find the char ,we are filling the array with 1(true).
+// 4. after that we check if any array eleemnt is not 1 then return false
+class Solution {
+    public boolean checkIfPangram(String sentence) {
+        int len = sentence.length();
+        if (len<26)
+            return false;
+        int[] arr = new int[26];
+        for(int  i = 0 ; i<len;i++){
+            char curr = sentence.charAt(i);
+            arr[curr-'a'] = 1;
+        }
+        for(int i = 0 ; i<26;i++){
+            if(arr[i]!=1)
+                return false;
+        }
+      return true;  
+    }
+}
