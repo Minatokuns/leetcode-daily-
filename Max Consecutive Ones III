@@ -1,0 +1,31 @@
+class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int start = 0,curr = 0;
+        int max = 0;
+        int count = 0;
+        int flip = k;
+        //using sliding window
+        while(curr<nums.length){
+            if(nums[curr]==1){
+                count++;
+                max = Math.max(max,count);
+                curr++;
+            }
+        //if the curr element is 0 but k>0 we can just flip it to 1
+            else if(flip>0){
+                count++;
+                max = Math.max(max,count);
+                flip--;
+                curr++;
+            }
+        //if the curr element is 0 but k=0 we cant flip it to 1 so we slide the window from start and if start element was 0 we would have flipped it to 1 so k is increased to 1
+            else{
+                if(nums[start++]==0){
+                    flip++;
+                }
+                count--;
+            }
+        }
+        return max;
+    }
+}
