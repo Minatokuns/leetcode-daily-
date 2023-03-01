@@ -6,9 +6,11 @@ class Solution {
         hs.put(0, 1);
         for(int i : nums){
             sum += i;
+         // if k =  7 and current sum is 14 and there's a prefix before of 7 so 14 - 7 equal 7 so there's a subarray exist between those 2 index.
             if(hs.containsKey(sum-k)){
                 count += hs.get(sum-k);
             }
+           //storing the prefix sum
             hs.put(sum,hs.getOrDefault(sum,0)+1);
         }
         return count;
