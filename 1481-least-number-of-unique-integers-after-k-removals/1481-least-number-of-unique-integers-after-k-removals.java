@@ -7,7 +7,7 @@ class Solution {
         }
         if(k==0)
             return hm.size();
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->hm.get(a)-hm.get(b));
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         for(int i : hm.keySet()){
              pq.add(i);
         }
