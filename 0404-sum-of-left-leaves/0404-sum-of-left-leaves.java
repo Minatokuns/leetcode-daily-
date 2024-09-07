@@ -14,22 +14,20 @@
  * }
  */
 class Solution {
-    int sum = 0;
-    public void dfs(TreeNode root,String cur){
+    public int dfs(TreeNode root,String cur){
         if(root ==null)
-            return;
+            return 0;
+        int sum=0;
         if(root.left==null && root.right==null && cur=="Left")
             sum= sum+ root.val;
         cur="Left";
-        dfs(root.left,cur);
+        sum= sum+dfs(root.left,cur);
         cur="Right";
-        dfs(root.right,cur);
-        return;
+        sum=sum+dfs(root.right,cur);
+        return sum;
     }
     public int sumOfLeftLeaves(TreeNode root) {
-        
         String cur ="";
-        dfs(root,cur);
-        return sum;
+        return dfs(root,cur);
     }
 }
