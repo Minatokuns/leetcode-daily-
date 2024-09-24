@@ -10,20 +10,39 @@
  */
 class Solution {
     public int[][] spiralMatrix(int m, int n, ListNode head) {
-        int[][] v = new int[m][n];
+        int[][] matrix = new int[m][n];
         for (int i = 0; i < m; i++) {
-             Arrays.fill(v[i],-1); // Fill the row with value 5
+             Arrays.fill(matrix[i],-1); // Fill the row with value 5
         }
-       
-  int i=0, j=0, t=0, l=0, b=m-1, r=n-1; //t=top, l=left, b=bottom, r=right
-        while(head!=null) {
-            v[i][j]=head.val;
-            head=head.next;
-            if(i == t && j < r) {j++; if(j==r) t++;}  // fill top most unfilled row 
-            else if(j == r && i < b) {i++; if(i==b) r--;} // fill right most unfilled column
-            else if(i == b && j > l) {j--; if(j==l) b--;} // fill bottom most unfilled row
-            else if(j == l && i > t) {i--; if(i==t) l++;} // fill left most unfilled column
+
+        int topRow = 0, bottomRow = m - 1, leftCol = 0, rightCol = n - 1;
+
+        while (head != null) {
+            for (int j = leftCol; j <= rightCol && head != null; j++) {
+                matrix[topRow][j] = head.val;
+                head = head.next;
+            }
+            topRow++;
+
+            for (int i = topRow; i <= bottomRow && head != null; i++) {
+                matrix[i][rightCol] = head.val;
+                head = head.next;
+            }
+            rightCol--;
+
+            for (int j = rightCol; j >= leftCol && head != null; j--) {
+                matrix[bottomRow][j] = head.val;
+                head = head.next;
+            }
+            bottomRow--;
+
+            for (int i = bottomRow; i >= topRow && head != null; i--) {
+                matrix[i][leftCol] = head.val;
+                head = head.next;
+            }
+            leftCol++;
         }
-        return v;
+
+        return matrix;
     }
 }
